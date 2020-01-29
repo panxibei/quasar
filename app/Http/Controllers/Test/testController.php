@@ -243,4 +243,12 @@ dd($email);
 	}
 
 
+	// quasar
+	public function quasar() {
+
+		return view('test.quasar');
+		
+	}
+
+
 }

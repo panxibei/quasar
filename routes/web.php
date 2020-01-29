@@ -478,4 +478,7 @@ Route::group(['prefix'=>'test', 'namespace'=>'Test', 'middleware'=>[]], function
 
 	// 测试echarts
 	Route::get('echarts', 'testController@echarts');
+
+	// quasar
+	Route::get('quasar', 'testController@quasar');
 });
