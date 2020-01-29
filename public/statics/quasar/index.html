@@ -1,0 +1,80 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="">
+<meta name="author" content="">
+
+  <!--
+    WARNING! Make sure that you match all Quasar related
+    tags to the same version! (Below it's "@1.7.4")
+  -->
+
+
+<link rel='stylesheet' href='material-icons.css'>
+<link rel='stylesheet' href='quasar.min.css'>
+  </head>
+
+  <body>
+  
+  <div id="q-app">
+  aaaa
+  
+  <!-- <div class="q-pa-md q-gutter-sm"> -->
+  <!-- <q-btn color="white" text-color="black" label="Standard"></q-btn> -->
+  <!-- </div> -->
+  
+    <div class="q-ma-md">
+    <q-btn label="Notify" color="primary" @click="notify"></q-btn>
+    
+    <q-btn color="white" text-color="black" label="Standard"></q-btn>
+  </div>
+  
+  <q-icon name="alarm"></q-icon>
+  
+  bbbb
+  
+  <div class="q-ma-md">
+    Running Quasar v{{ version }}
+  </div>
+  
+  </div>
+  
+    <!-- Add the following at the end of your body tag -->
+    
+
+	<!--
+    <script src="https://cdn.jsdelivr.net/npm/vue@^2.0.0/dist/vue.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/quasar@1.7.4/dist/quasar.umd.min.js"></script>
+	-->
+	
+	<script src='vue.min.js'></script>
+<script src='quasar.umd.min.js'></script>
+    
+    <script>
+      /*
+        Example kicking off the UI. Obviously, adapt this to your specific needs.
+        Assumes you have a <div id="q-app"></div> in your <body> above
+       */
+      new Vue({
+        el: '#q-app',
+        data: function () {
+          return {
+		  version: Quasar.version
+		  }
+        },
+        methods: {
+		
+		notify: function () {
+      this.$q.notify('Running on Quasar v' + this.$q.version)
+    }
+		
+		},
+        // ...etc
+      })
+    </script>
+  </body>
+</html>
