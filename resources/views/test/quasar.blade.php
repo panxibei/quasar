@@ -23,73 +23,78 @@
 <body>
 
 <div id="app">
-  aaaa
-  
-  <!-- <div class="q-pa-md q-gutter-sm"> -->
-  <!-- <q-btn color="white" text-color="black" label="Standard"></q-btn> -->
-  <!-- </div> -->
-  
-    <div class="q-ma-md">
-    <q-btn label="Notify" color="primary" @click="notify"></q-btn>
+
+
+  <q-layout view="hHh lpR fFf" container style="height: 800px" class="shadow-2 rounded-borders">
     
-    <q-btn color="white" text-color="black" label="Standard"></q-btn>
-  </div>
-  
-  <q-icon name="alarm"></q-icon>
-  
-  bbbb
-  
-  <div class="q-ma-md">
-    Running Quasar v@{{ version }}
-  </div>
-  
-
-  <br>
-  <br>
-  <br>
-  <br>
-
-    <q-layout view="hHh lpR fFf" container style="height: 500px" class="shadow-2 rounded-borders">
-      
-      <q-header elevated class="bg-primary text-white">
-        <q-toolbar>
-          <q-btn dense flat round icon="menu" @click="left = !left" ></q-btn>
+    <q-header reveal elevated class="bg-primary text-white">
+      <q-toolbar>
+        <q-btn dense flat round icon="menu" @click="left = !left"></q-btn>
 
         <q-toolbar-title>
-        <q-icon name="alarm"></q-icon>
-          <q-avatar>
+          <q-icon name="alarm"></q-icon>
+          <!-- <q-avatar>
             <img src="https://cdn.quasar.dev/logo/svg/quasar-logo.svg">
-          </q-avatar>
+          </q-avatar> -->
           Title header
         </q-toolbar-title>
-        </q-toolbar>
-      </q-header>
-      
-      <q-drawer show-if-above v-model="left" side="left" bordered>
-      <!-- drawer content -->
-        drawer here
-    </q-drawer>
-      
-    <q-page-container>
-      router-view
-    </q-page-container>
-      
-    <q-footer elevated class="bg-grey-8 text-white">
-      <q-toolbar>
-        <q-toolbar-title>
-          <q-avatar>
-            <img src="https://cdn.quasar.dev/logo/svg/quasar-logo.svg">
-          </q-avatar>
-          Title footer
-        </q-toolbar-title>
       </q-toolbar>
-    </q-footer>     
+    </q-header>
+    
+    <q-drawer show-if-above v-model="left" side="left" bordered>
+    <!-- drawer content -->
+      drawer here
+  </q-drawer>
+    
+  <q-page-container>
+    router-view
 
+    <br>
 
+    <div class="q-ma-md">
+      <q-btn label="Notify" color="primary" @click="notify"></q-btn>
       
+      <q-btn color="white" text-color="black" label="Standard"></q-btn>
+    </div>
+    
+    <q-icon name="alarm"></q-icon>
 
-    </q-layout>
+    <div class="q-ma-md">
+      Running Quasar v@{{ version }}
+    </div>
 
+    <q-page padding class="q-pa-md">
+      <p v-for="n in 15" :key="n">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit nihil praesentium molestias a adipisci, dolore vitae odit, quidem consequatur optio voluptates asperiores pariatur eos numquam rerum delectus commodi perferendis voluptate?
+      </p>
+
+
+
+
+      <!-- place QPageScroller at end of page -->
+      <q-page-scroller position="bottom-right" :scroll-offset="150" :offset="[18, 18]">
+        <q-btn fab icon="keyboard_arrow_up" color="accent" />
+      </q-page-scroller>
+
+    </q-page>
+
+  </q-page-container>
+    
+  <q-footer elevated class="bg-grey-8 text-white">
+    <q-toolbar>
+      <q-toolbar-title>
+        <!-- <q-avatar>
+          <img src="https://cdn.quasar.dev/logo/svg/quasar-logo.svg">
+        </q-avatar> -->
+        Title footer
+      </q-toolbar-title>
+    </q-toolbar>
+  </q-footer>     
+
+
+    
+
+  </q-layout>
 
 
 
