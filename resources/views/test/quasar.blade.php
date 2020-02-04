@@ -41,55 +41,110 @@
       </q-toolbar>
     </q-header>
     
-    <q-drawer show-if-above v-model="left" side="left" bordered>
-    <!-- drawer content -->
-      drawer here
-  </q-drawer>
+    <q-drawer
+        v-model="drawer"
+        show-if-above
+
+        :mini="miniState"
+        @mouseover="miniState = false"
+        @mouseout="miniState = true"
+
+        :width="200"
+        :breakpoint="500"
+        bordered
+        content-class="bg-grey-3"
+      >
+      <q-scroll-area class="fit">
+        <q-list padding>
+          <q-item clickable v-ripple>
+            <q-item-section avatar>
+              <q-icon name="inbox"></q-icon>
+            </q-item-section>
+
+            <q-item-section>
+              Inbox
+            </q-item-section>
+          </q-item>
+
+          <q-item active clickable v-ripple>
+            <q-item-section avatar>
+              <q-icon name="star"></q-icon>
+            </q-item-section>
+
+            <q-item-section>
+              Star
+            </q-item-section>
+          </q-item>
+
+          <q-item clickable v-ripple>
+            <q-item-section avatar>
+              <q-icon name="send"></q-icon>
+            </q-item-section>
+
+            <q-item-section>
+              Send
+            </q-item-section>
+          </q-item>
+
+          <q-separator></q-separator>
+
+          <q-item clickable v-ripple>
+            <q-item-section avatar>
+              <q-icon name="drafts"></q-icon>
+            </q-item-section>
+
+            <q-item-section>
+              Drafts
+            </q-item-section>
+          </q-item>
+        </q-list>
+      </q-scroll-area>
+    </q-drawer>
     
-  <q-page-container>
-    router-view
+    <q-page-container>
+      router-view
 
-    <br>
+      <br>
 
-    <div class="q-ma-md">
-      <q-btn label="Notify" color="primary" @click="notify"></q-btn>
+      <div class="q-ma-md">
+        <q-btn label="Notify" color="primary" @click="notify"></q-btn>
+        
+        <q-btn color="white" text-color="black" label="Standard"></q-btn>
+      </div>
       
-      <q-btn color="white" text-color="black" label="Standard"></q-btn>
-    </div>
-    
-    <q-icon name="alarm"></q-icon>
+      <q-icon name="alarm"></q-icon>
 
-    <div class="q-ma-md">
-      Running Quasar v@{{ version }}
-    </div>
+      <div class="q-ma-md">
+        Running Quasar v@{{ version }}
+      </div>
 
-    <q-page padding class="q-pa-md">
-      <p v-for="n in 15" :key="n">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit nihil praesentium molestias a adipisci, dolore vitae odit, quidem consequatur optio voluptates asperiores pariatur eos numquam rerum delectus commodi perferendis voluptate?
-      </p>
+      <q-page padding class="q-pa-md">
+        <p v-for="n in 15" :key="n">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit nihil praesentium molestias a adipisci, dolore vitae odit, quidem consequatur optio voluptates asperiores pariatur eos numquam rerum delectus commodi perferendis voluptate?
+        </p>
 
 
 
 
-      <!-- place QPageScroller at end of page -->
-      <q-page-scroller position="bottom-right" :scroll-offset="150" :offset="[18, 18]">
-        <q-btn fab icon="keyboard_arrow_up" color="accent" />
-      </q-page-scroller>
+        <!-- place QPageScroller at end of page -->
+        <q-page-scroller position="bottom-right" :scroll-offset="150" :offset="[18, 18]">
+          <q-btn fab icon="keyboard_arrow_up" color="accent" />
+        </q-page-scroller>
 
-    </q-page>
+      </q-page>
 
-  </q-page-container>
-    
-  <q-footer elevated class="bg-grey-8 text-white">
-    <q-toolbar>
-      <q-toolbar-title>
-        <!-- <q-avatar>
-          <img src="https://cdn.quasar.dev/logo/svg/quasar-logo.svg">
-        </q-avatar> -->
-        Title footer
-      </q-toolbar-title>
-    </q-toolbar>
-  </q-footer>     
+    </q-page-container>
+      
+    <q-footer elevated class="bg-grey-8 text-white">
+      <q-toolbar>
+        <q-toolbar-title>
+          <!-- <q-avatar>
+            <img src="https://cdn.quasar.dev/logo/svg/quasar-logo.svg">
+          </q-avatar> -->
+          Title footer
+        </q-toolbar-title>
+      </q-toolbar>
+    </q-footer>     
 
 
     
@@ -120,7 +175,9 @@
     data: function () {
         return {
         version: Quasar.version,
-        left: false
+        left: false,
+        drawer: false,
+        miniState: true
         }
     },
     methods: {
