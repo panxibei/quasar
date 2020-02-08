@@ -40,8 +40,8 @@
         </q-toolbar-title>
 
 
-        <q-btn flat round dense icon="sim_card" class="q-mr-xs" />
-        <q-btn flat round dense icon="gamepad" />
+        <q-btn flat round dense icon="sim_card" class="q-mr-xs"></q-btn>
+        <q-btn flat round dense icon="gamepad"></q-btn>
 
       </q-toolbar>
 
