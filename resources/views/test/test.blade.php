@@ -173,6 +173,15 @@
 
 					<br><br>
 					
+					<Steps :current="4" size="small">
+						<Step title="111" content="这里是该步骤的描述信息"></Step>
+						<Step title="222" content="这里是该步骤的描述信息" status="error"></Step>
+						<Step title="333" content="这里是该步骤的描述信息"></Step>
+						<Step title="444" content="这里是该步骤的描述信息" status="error"></Step>
+						<Step title="555" content="这里是该步骤的描述信息"></Step>
+						<Step title="666" content="这里是该步骤的描述信息"></Step>
+					</Steps>
+
 					<br>
 					
 					<br><br>7.表格
