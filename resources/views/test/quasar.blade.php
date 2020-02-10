@@ -289,44 +289,69 @@
           selection="multiple"
           :selected.sync="tableselected"
           :visible-columns="visibleColumns"
+          :loading="loading"
+          no-data-label="Sorry! I didn't find anything for you!!"
         >
         
-        <template v-slot:top="props">
-          <div class="col-2 q-table__title">Treats</div>
+          <!-- 表格顶部 -->
+          <template v-slot:top="props">
+            <div class="col-2 q-table__title">Treats</div>
 
-          <q-space></q-space>
+            <q-space></q-space>
 
-          <div v-if="$q.screen.gt.xs" class="col">
-            <q-toggle v-model="visibleColumns" val="calories" label="Calories"></q-toggle>
-            <q-toggle v-model="visibleColumns" val="fat" label="Fat"></q-toggle>
-            <q-toggle v-model="visibleColumns" val="carbs" label="Carbs"></q-toggle>
-            <q-toggle v-model="visibleColumns" val="protein" label="Protein"></q-toggle>
-            <q-toggle v-model="visibleColumns" val="sodium" label="Sodium"></q-toggle>
-            <q-toggle v-model="visibleColumns" val="calcium" label="Calcium"></q-toggle>
-            <q-toggle v-model="visibleColumns" val="iron" label="Iron"></q-toggle>
-          </div>
-          <q-select
-            v-else
-            v-model="visibleColumns"
-            multiple
-            borderless
-            dense
-            options-dense
-            :display-value="$q.lang.table.columns"
-            emit-value
-            map-options
-            :options="columns"
-            option-value="name"
-            style="min-width: 150px"
-          ></q-select>
+            <div class="">
+            <q-select
+              v-model="visibleColumns"
+              multiple
+              borderless
+              dense
+              options-dense
+              :display-value="$q.lang.table.columns"
+              emit-value
+              map-options
+              :options="columns"
+              option-value="name"
+              style="min-width: 50px"
+            ></select>
+              
+            </div>
 
-          <q-btn
-            flat round dense
-            :icon="props.inFullscreen ? 'fullscreen_exit' : 'fullscreen'"
-            @click="props.toggleFullscreen"
-            class="q-ml-md"
-          ></q-btn>
-        </template>
+
+            <q-btn
+              flat round dense
+              :icon="props.inFullscreen ? 'fullscreen_exit' : 'fullscreen'"
+              @click="props.toggleFullscreen"
+              class="q-ml-md"
+            ></q-btn>
+          </template>
+
+          <!-- 表格主体 -->
+          <template v-slot:body="props">
+            <q-tr :props="props">
+              <q-td auto-width>
+                <!-- <q-checkbox v-model="props.selected"></q-checkbox> -->
+                <q-toggle dense v-model="props.selected"></q-toggle>
+              </q-td>
+              <q-td key="name" :props="props">
+                @{{ props.row.name }}
+                <q-btn dense round flat :icon="props.expand ? 'arrow_drop_up' : 'arrow_drop_down'" @click="props.expand = !props.expand" ></q-btn>
+              </q-td>
+              <q-td key="calories" :props="props">@{{ props.row.calories }}</q-td>
+              <q-td key="fat" :props="props">@{{ props.row.fat }}</q-td>
+              <q-td key="carbs" :props="props">@{{ props.row.carbs }}</q-td>
+              <q-td key="protein" :props="props">@{{ props.row.protein }}</q-td>
+              <q-td key="sodium" :props="props">@{{ props.row.sodium }}</q-td>
+              <q-td key="calcium" :props="props">@{{ props.row.calcium }}</q-td>
+              <q-td key="iron" :props="props">
+                <q-badge color="amber">@{{ props.row.iron }}</q-badge>
+              </q-td>
+            </q-tr>
+            <q-tr v-show="props.expand" :props="props">
+              <q-td colspan="100%">
+                <div class="text-left">This is expand slot for row above: @{{ props.row.name }}.</div>
+              </q-td>
+            </q-tr>
+          </template>
         
         </q-table>
 
@@ -466,6 +491,7 @@
       date1: '2019/02/01',
       date2: '2019-02-01 12:44:55',
 
+      loading: true,
       tableselected: [],
       visibleColumns: [ 'calories', 'desc', 'fat', 'carbs', 'protein', 'sodium', 'calcium', 'iron' ],
       columns: [
@@ -601,9 +627,19 @@
       getSelectedString () {
         return this.tableselected.length === 0 ? '' : `${this.tableselected.length} record${this.tableselected.length > 1 ? 's' : ''} selected of ${this.data.length}`
       },
+
+      // emulate fetching data from server
+      onRefresh () {
+        this.loading = true
+        setTimeout(() => {
+          this.loading = false
+        }, 5000)
+      }
       
     },
-    // ...etc
+    mounted () {
+      this.onRefresh()
+    },
   })
 </script>
 
