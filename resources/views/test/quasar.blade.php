@@ -32,7 +32,14 @@
 .my-sticky-header-table thead tr:first-child th {
   /* bg color is important for th; just specify one */
   background-color: #c1f4cd;
+  z-index: 1
 }
+/* 第二行表头边框 */
+.my-sticky-header-table thead tr:nth-child(2) th {
+  background-color: #c1f4cd;
+  z-index: 1
+}
+
 .my-sticky-header-table thead tr th {
   position: sticky;
   z-index: 1;
@@ -40,9 +47,14 @@
 .my-sticky-header-table thead tr:first-child th {
   top: 0;
 }
+/* 第二行表头固定 */
+.my-sticky-header-table thead tr:nth-child(2) th {
+  top: 48px;
+}
+/* 加载进度条的位置，48px为一行表头，96px为两行表头 */
 .my-sticky-header-table.q-table--loading thead tr:last-child th {
   /* height of all previous header rows */
-  top: 48px;
+  top: 96px;
 }
 </style>
 
@@ -323,6 +335,33 @@
               @click="props.toggleFullscreen"
               class="q-ml-md"
             ></q-btn>
+          </template>
+
+          <template v-slot:header="props">
+          <q-tr>
+            <q-th rowspan="2" align="center">
+              <q-checkbox color="primary" v-model="props.selected"></q-checkbox>
+            </q-th>
+            <q-th rowspan="2" align="center" key="name" :props="props">@{{ props.colsMap.name.label }}</q-th>
+            <q-th colspan="2" align="center">表头一</q-th>
+            <q-th key="carbs" :props="props">@{{ props.colsMap.carbs.label }}</q-th>
+            <q-th colspan="3" align="center">表头二</q-th>
+            <q-th key="iron" :props="props">@{{ props.colsMap.iron.label }}</q-th>
+          </q-tr>
+          <q-tr>
+            <!-- <q-th>
+              <q-checkbox color="primary" v-model="props.selected"></q-checkbox>
+            </q-th> -->
+            <!-- <q-th key="name" :props="props">@{{ props.colsMap.name.label }}</q-th> -->
+            <!-- 以下样式，如左侧有上下合并的表头，则左侧追加一条分隔线 -->
+            <q-th style="border-left:1px solid #ccc" key="calories" :props="props">@{{ props.colsMap.calories.label }}</q-th>
+            <q-th key="fat" :props="props">@{{ props.colsMap.fat.label }}</q-th>
+            <q-th key="carbs" :props="props">@{{ props.colsMap.carbs.label }}</q-th>
+            <q-th key="protein" :props="props">@{{ props.colsMap.protein.label }}</q-th>
+            <q-th key="sodium" :props="props">@{{ props.colsMap.sodium.label }}</q-th>
+            <q-th key="calcium" :props="props">@{{ props.colsMap.calcium.label }}</q-th>
+            <q-th key="iron" :props="props">@{{ props.colsMap.iron.label }}</q-th>
+          </q-tr>
           </template>
 
           <!-- 表格主体 -->
