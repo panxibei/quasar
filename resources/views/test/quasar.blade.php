@@ -25,7 +25,7 @@
   /* this is when the loading indicator appears */
 }
 .my-sticky-header-table .q-table__middle {
-  max-height: 200px;
+  max-height: 300px;
 }
 .my-sticky-header-table .q-table__top,
 .my-sticky-header-table .q-table__bottom,
@@ -385,11 +385,24 @@
                 <q-badge color="amber">@{{ props.row.iron }}</q-badge>
               </q-td>
             </q-tr>
+
+            <!-- 扩展栏 -->
             <q-tr v-show="props.expand" :props="props">
-              <q-td colspan="100%">
+              <!-- <q-td colspan="100%">
                 <div class="text-left">This is expand slot for row above: @{{ props.row.name }}.</div>
+              </q-td> -->
+              <q-td colspan="100%">
+                <q-table
+                  :data="data"
+                  :columns="columns"
+                  row-key="name"
+                  dense
+                  hide-bottom
+                ></q-table>
               </q-td>
             </q-tr>
+
+
           </template>
         
         </q-table>
