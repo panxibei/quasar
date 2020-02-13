@@ -69,7 +69,7 @@
     <!-- 头部 -->
     <q-header reveal elevated class="bg-primary text-white">
       <q-toolbar>
-        <q-btn dense flat round icon="menu" @click="left = !left"></q-btn>
+        <q-btn dense flat round icon="menu" @click="drawer = !drawer"></q-btn>
 
         <q-toolbar-title>
           <q-icon name="alarm"></q-icon>
@@ -130,7 +130,8 @@
     
 
     <!-- 左侧导航/菜单栏 -->
-    <q-drawer
+
+    <!-- <q-drawer
         v-model="drawer"
         show-if-above
 
@@ -138,12 +139,27 @@
         @mouseover="miniState = false"
         @mouseout="miniState = true"
 
+        :width="260"
+        :breakpoint="500"
+        bordered
+        content-class="bg-grey-3"
+      > -->
+    <q-drawer
+        v-model="drawer"
         :width="200"
         :breakpoint="500"
         bordered
         content-class="bg-grey-3"
       >
-      <q-scroll-area class="fit">
+      <q-tree
+        :nodes="simple"
+        node-key="label"
+        no-connectors
+        :expanded.sync="expanded"
+      ></q-tree>
+
+
+      <!-- <q-scroll-area class="fit">
         <q-list padding>
           <q-item clickable v-ripple>
             <q-item-section avatar>
@@ -187,7 +203,9 @@
             </q-item-section>
           </q-item>
         </q-list>
-      </q-scroll-area>
+      </q-scroll-area> -->
+
+
     </q-drawer>
     
     <!-- 中间主内容区域 -->
@@ -207,6 +225,78 @@
       <div class="q-ma-md">
         Running Quasar v@{{ version }}
       </div>
+
+      <!-- tabs & tabpanels -->
+      <div class="q-pa-md">
+        <div class="q-gutter-y-md" style="max-width: 850px">
+          <q-option-group
+            v-model="panel"
+            inline
+            :options="[
+              { label: 'Mails', value: 'mails' },
+              { label: 'Alarms', value: 'alarms' },
+              { label: 'Movies', value: 'movies' }
+            ]"
+          ></q-option-group>
+    
+          <q-tab-panels v-model="panel" animated class="shadow-2 rounded-borders">
+            <q-tab-panel name="mails">
+              <div class="text-h6">Mails</div>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit.
+            </q-tab-panel>
+    
+            <q-tab-panel name="alarms">
+              <div class="text-h6">Alarms</div>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit.
+            </q-tab-panel>
+    
+            <q-tab-panel name="movies">
+              <div class="text-h6">Movies</div>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit.
+            </q-tab-panel>
+          </q-tab-panels>
+        </div>
+      </div>
+
+      <div class="q-pa-md">
+        <div class="q-gutter-y-md" style="max-width: 600px">
+          <q-card>
+            <q-tabs
+              v-model="tab"
+              dense
+              class="text-grey"
+              active-color="primary"
+              indicator-color="primary"
+              align="justify"
+              narrow-indicator
+            >
+              <q-tab name="mails" label="Mails" ></q-tab>
+              <q-tab name="alarms" label="Alarms" ></q-tab>
+              <q-tab name="movies" label="Movies" ></q-tab>
+            </q-tabs>
+    
+            <q-separator ></q-separator>
+    
+            <q-tab-panels v-model="tab" animated>
+              <q-tab-panel name="mails">
+                <div class="text-h6">Mails</div>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+              </q-tab-panel>
+    
+              <q-tab-panel name="alarms">
+                <div class="text-h6">Alarms</div>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+              </q-tab-panel>
+    
+              <q-tab-panel name="movies">
+                <div class="text-h6">Movies</div>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+              </q-tab-panel>
+            </q-tab-panels>
+          </q-card>
+        </div>
+      </div>
+
 
       <div class="q-ma-md" style="max-width: 400px">
         <q-input v-model="input1" label="q-input"></q-input>
@@ -375,7 +465,9 @@
                 @{{ props.row.name }}
                 <q-btn dense round flat :icon="props.expand ? 'arrow_drop_up' : 'arrow_drop_down'" @click="props.expand = !props.expand" ></q-btn>
               </q-td>
-              <q-td key="calories" :props="props">@{{ props.row.calories }}</q-td>
+              <q-td key="calories" :props="props">@{{ props.row.calories }}
+                <q-btn dense round flat :icon="props.expand ? 'arrow_drop_up' : 'arrow_drop_down'" @click="props.expand = !props.expand" ></q-btn>
+              </q-td>
               <q-td key="fat" :props="props">@{{ props.row.fat }}</q-td>
               <q-td key="carbs" :props="props">@{{ props.row.carbs }}</q-td>
               <q-td key="protein" :props="props">@{{ props.row.protein }}</q-td>
@@ -472,7 +564,10 @@
     data: {
         
       version: Quasar.version,
-      left: false,
+
+      panel: 'mails',
+      tab: 'mails',
+
       drawer: false,
       miniState: true,
 
@@ -668,6 +763,47 @@
       ],
 
       separator: 'cell',
+
+      // 树
+      expanded: [ 'Satisfied customers (with avatar)', 'Good food (with icon)' ],
+
+      simple: [
+        {
+          label: 'Satisfied customers (with avatar)',
+          avatar: 'https://cdn.quasar.dev/img/boy-avatar.png',
+          children: [
+            {
+              label: 'Good food (with icon)',
+              icon: 'restaurant_menu',
+              children: [
+                { label: 'Quality ingredients' },
+                { label: 'Good recipe' }
+              ]
+            },
+            {
+              label: 'Good service (disabled node with icon)',
+              icon: 'room_service',
+              disabled: true,
+              children: [
+                { label: 'Prompt attention' },
+                { label: 'Professional waiter' }
+              ]
+            },
+            {
+              label: 'Pleasant surroundings (with icon)',
+              icon: 'photo',
+              children: [
+                {
+                  label: 'Happy atmosphere (with image)',
+                  img: 'https://cdn.quasar.dev/img/logo_calendar_128px.png'
+                },
+                { label: 'Good table presentation' },
+                { label: 'Pleasing decor' }
+              ]
+            }
+          ]
+        }
+      ],
 
     },
     methods: {
