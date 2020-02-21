@@ -113,6 +113,9 @@
         </q-btn>
 
         <q-btn flat round dense icon="sim_card" class="q-mr-xs"></q-btn>
+        <q-btn flat round dense icon="email" class="q-mr-xs">
+          <q-badge color="red" floating>6</q-badge>
+        </q-btn>
         <q-btn flat round dense icon="account_circle">
           <q-menu>
             <div class="row no-wrap q-pa-md">
