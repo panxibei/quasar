@@ -161,7 +161,7 @@ fffffffffffffffffff
         } else {
             clearInterval(vm_app.stopscan);
             console.log('path: ' + a);
-            // vm_app.modal_qrcodescan_show = false;
+            vm_app.modal_qrcodescan_show = false;
             vm_app.qrcodeinfo = a;
         }
     }	
