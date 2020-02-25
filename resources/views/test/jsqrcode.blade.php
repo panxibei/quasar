@@ -26,11 +26,15 @@
     必须允许
     <br>
 
-    <button id="startcapture" @click="vm_app.modal_camera_show=true">Start Up (permit camera)</button>
+    <button id="startcapture" @click="vm_app.modal_qrcodescan_show=true">Start Up (permit camera)</button>
     <br><br>
 
     imgUrl:<br>
     @{{ camera_imgurl.substr(0, 40) }}
+    <br><br>
+
+    qrcodeinfo:<br>
+    @{{ qrcodeinfo }}
     <br>
     <!-- <button @click="submitpic">Submit Pic</button> -->
     <button @click="start_get_qrcode">Submit Pic</button>
@@ -81,7 +85,7 @@ fffffffffffffffffff
 <script src="{{ asset('js/axios.min.js') }}"></script>
 <script src="{{ asset('js/bluebird.min.js') }}"></script>
 <script src="{{ asset('statics/iview/iview.min.js') }}"></script>
-<script src="{{ asset('js/camera.js') }}"></script>
+<script src="{{ asset('js/qrcodescan.js') }}"></script>
 <script src="{{ asset('js/httpVueLoader.js') }}"></script>
 
 <script type="text/javascript" src="{{ asset('statics/jsqrcode/grid.js') }}"></script>
@@ -155,7 +159,10 @@ function read(a)
     if (a == 'error decoding QR Code' || a == 'Failed to load the image') {
         return false;
     } else {
+        clearInterval(vm_app.stopscan);
         console.log('path: ' + a);
+        vm_app.modal_qrcodescan_show = false;
+        vm_app.qrcodeinfo = a;
     }
 }	
 	
@@ -219,13 +226,15 @@ function initCanvas(ww,hh)
 var vm_app = new Vue({
     el: '#app',
 	components: {
-		'my-camera': httpVueLoader("{{ asset('components/my-camera.vue') }}")
+		'my-camera': httpVueLoader("{{ asset('components/my-qrcodescan.vue') }}")
 	},
 	data: {
 
-        modal_camera_show: false,
+        modal_qrcodescan_show: false,
+        stopscan: null,
         camera_imgurl: '',
 
+        qrcodeinfo: '',
 
     },
 	methods: {
@@ -261,11 +270,12 @@ var vm_app = new Vue({
         },
 
         get_qrcode () {
+            
             var imgurl = this.camera_imgurl;
 
             if (imgurl == '') return false;
 
-            alert(imgurl);
+            // alert(imgurl);
 
             initCanvas(640,480);
             qrcode.callback = read;
@@ -275,11 +285,11 @@ var vm_app = new Vue({
         },
 
         start_get_qrcode() {
-            setInterval(this.get_qrcode, 1000);
+            setInterval(this.get_qrcode, 3000);
         },
 
 
-	},
+    },
 	mounted: function () {
         // setInterval(this.get_qrcode(), 1000);
         // this.get_qrcode();
