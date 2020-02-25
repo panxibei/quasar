@@ -45,6 +45,7 @@
 
     <br><br>
 
+    <my-camera></my-camera>
 
 
 
@@ -217,6 +218,9 @@ function initCanvas(ww,hh)
 <script type="text/javascript">
 var vm_app = new Vue({
     el: '#app',
+	components: {
+		'my-camera': httpVueLoader("{{ asset('components/my-camera.vue') }}")
+	},
 	data: {
 
         modal_camera_show: false,
