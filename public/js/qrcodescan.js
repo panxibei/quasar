@@ -64,7 +64,7 @@
         function () {
           takepicture();
           vm_app.get_qrcode();
-        }, 1000);
+        }, 500);
       // alert();
       // takepicture();
       ev.preventDefault();
