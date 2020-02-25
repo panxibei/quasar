@@ -274,7 +274,7 @@ var vm_app = new Vue({
 
             // alert(imgurl);
 
-            initCanvas(640,480);
+            // initCanvas(640,480);
             qrcode.callback = read;
             // qrcode.decode("{{ asset('statics/jsqrcode/test.jpg') }}");
             qrcode.decode(imgurl);
