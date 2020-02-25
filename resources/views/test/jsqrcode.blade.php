@@ -154,7 +154,7 @@ function handleFiles(f)
 	
 function read(a)
 {
-	alert(a);
+	// alert(a);
     
     if (a == 'error decoding QR Code' || a == 'Failed to load the image') {
         return false;
