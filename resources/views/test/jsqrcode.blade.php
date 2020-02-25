@@ -236,6 +236,7 @@ var vm_app = new Vue({
     },
 	methods: {
 
+        // 在这里没有用到
         submitpic() {
 			var _this = this;
 			var imgurl = _this.camera_imgurl;
