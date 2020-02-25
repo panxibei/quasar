@@ -23,7 +23,7 @@
     <button @click="printJS('app', 'html')">Print</button>
     <br>
     <br>
-    必须允许
+    权限必须允许
     <br>
 
     <button id="startcapture" @click="vm_app.modal_qrcodescan_show=true">Start Up (permit camera)</button>
@@ -37,7 +37,7 @@
     @{{ qrcodeinfo }}
     <br>
     <!-- <button @click="submitpic">Submit Pic</button> -->
-    <button @click="start_get_qrcode">Submit Pic</button>
+    <button @click="alert('这个按钮没有功能')">Submit Pic</button>
 
 
     <br><br>
@@ -63,8 +63,8 @@ aaaaaaaaaaaaaaaaa
     <object  id="iembedflash" classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=7,0,0,0" width="320" height="240">
         <param name="movie" value="camcanvas.swf" />
         <param name="quality" value="high" />
-      <param name="allowScriptAccess" value="always" />
-        <embed  allowScriptAccess="always"  id="embedflash" src="camcanvas.swf" quality="high" width="320" height="240" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" mayscript="true"  />
+        <param name="allowScriptAccess" value="always" />
+        <embed allowScriptAccess="always" id="embedflash" src="camcanvas.swf" quality="high" width="320" height="240" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" mayscript="true"  />
   </object>
   
   </div>
@@ -107,7 +107,7 @@ fffffffffffffffffff
 <script type="text/javascript" src="{{ asset('statics/jsqrcode/databr.js') }}"></script>
 
 <script type="text/javascript">
-var gCtx = null;
+    var gCtx = null;
 	var gCanvas = null;
 
 	var imageData = null;
@@ -116,66 +116,63 @@ var gCtx = null;
 	var c=0;
 	
 	
-function dragenter(e) {
-  e.stopPropagation();
-  e.preventDefault();
-}
-
-function dragover(e) {
-  e.stopPropagation();
-  e.preventDefault();
-}
-function drop(e) {
-  e.stopPropagation();
-  e.preventDefault();
-
-  var dt = e.dataTransfer;
-  var files = dt.files;
-
-  handleFiles(files);
-}
-
-function handleFiles(f)
-{
-	var o=[];
-	for(var i =0;i<f.length;i++)
-	{
-	  var reader = new FileReader();
-
-      reader.onload = (function(theFile) {
-        return function(e) {
-          qrcode.decode(e.target.result);
-        };
-      })(f[i]);
-
-      // Read in the image file as a data URL.
-      reader.readAsDataURL(f[i]);	}
-}
-	
-function read(a)
-{
-	// alert(a);
-    
-    if (a == 'error decoding QR Code' || a == 'Failed to load the image') {
-        return false;
-    } else {
-        clearInterval(vm_app.stopscan);
-        console.log('path: ' + a);
-        vm_app.modal_qrcodescan_show = false;
-        vm_app.qrcodeinfo = a;
+    function dragenter(e) {
+        e.stopPropagation();
+        e.preventDefault();
     }
-}	
-	
-function load()
-{
-	initCanvas(640,480);
-	qrcode.callback = read;
-	qrcode.decode("{{ asset('statics/jsqrcode/test.jpg') }}");
-	
-}
 
-function initCanvas(ww,hh)
-	{
+    function dragover(e) {
+        e.stopPropagation();
+        e.preventDefault();
+    }
+    function drop(e) {
+        e.stopPropagation();
+        e.preventDefault();
+
+        var dt = e.dataTransfer;
+        var files = dt.files;
+
+        handleFiles(files);
+    }
+
+    function handleFiles(f) {
+        var o=[];
+        for(var i =0;i<f.length;i++)
+        {
+        var reader = new FileReader();
+
+        reader.onload = (function(theFile) {
+            return function(e) {
+            qrcode.decode(e.target.result);
+            };
+        })(f[i]);
+
+        // Read in the image file as a data URL.
+        reader.readAsDataURL(f[i]);	}
+    }
+
+    // 参数为读取的二维码字符内容
+    function read(a)
+    {
+        // alert(a);
+        
+        if (a == 'error decoding QR Code' || a == 'Failed to load the image') {
+            return false;
+        } else {
+            clearInterval(vm_app.stopscan);
+            console.log('path: ' + a);
+            vm_app.modal_qrcodescan_show = false;
+            vm_app.qrcodeinfo = a;
+        }
+    }	
+	
+    // function load() {
+    // 	initCanvas(640,480);
+    // 	qrcode.callback = read;
+    // 	qrcode.decode("{{ asset('statics/jsqrcode/test.jpg') }}");
+    // }
+
+    function initCanvas(ww,hh) {
 		gCanvas = document.getElementById("qr-canvas");
 		gCanvas.addEventListener("dragenter", dragenter, false);  
 		gCanvas.addEventListener("dragover", dragover, false);  
@@ -214,11 +211,11 @@ function initCanvas(ww,hh)
 		} 
  	} 
 
-        function captureToCanvas() {
+    function captureToCanvas() {
 		flash = document.getElementById("embedflash");
 		flash.ccCapture();
 		qrcode.decode();
-        }
+    }
 </script>
 
 
@@ -284,16 +281,12 @@ var vm_app = new Vue({
             
         },
 
-        start_get_qrcode() {
-            setInterval(this.get_qrcode, 3000);
-        },
 
 
     },
 	mounted: function () {
-        // setInterval(this.get_qrcode(), 1000);
-        // this.get_qrcode();
-	}
+
+    }
 })
 </script>
 </html>
