@@ -261,10 +261,11 @@ var vm_app = new Vue({
         },
 
         get_qrcode () {
-
             var imgurl = this.camera_imgurl;
 
             if (imgurl == '') return false;
+
+            alert(imgurl);
 
             initCanvas(640,480);
             qrcode.callback = read;
@@ -274,7 +275,7 @@ var vm_app = new Vue({
         },
 
         start_get_qrcode() {
-            setInterval(this.get_qrcode(), 1000);
+            setInterval(this.get_qrcode, 1000);
         },
 
 
