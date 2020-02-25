@@ -58,7 +58,7 @@
 aaaaaaaaaaaaaaaaa
 <br><br>
 
-<div class="container">
+<!-- <div class="container">
 	
     <object  id="iembedflash" classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=7,0,0,0" width="320" height="240">
         <param name="movie" value="camcanvas.swf" />
@@ -69,7 +69,7 @@ aaaaaaaaaaaaaaaaa
   
   </div>
 <button onclick="captureToCanvas()">Capture</button><br>
-<canvas id="qr-canvas" width="640" height="480"></canvas>
+<canvas id="qr-canvas" width="640" height="480"></canvas> -->
 
 <br><br>
 fffffffffffffffffff
@@ -172,21 +172,21 @@ fffffffffffffffffff
     // 	qrcode.decode("{{ asset('statics/jsqrcode/test.jpg') }}");
     // }
 
-    function initCanvas(ww,hh) {
-		gCanvas = document.getElementById("qr-canvas");
-		gCanvas.addEventListener("dragenter", dragenter, false);  
-		gCanvas.addEventListener("dragover", dragover, false);  
-		gCanvas.addEventListener("drop", drop, false);
-		var w = ww;
-		var h = hh;
-		gCanvas.style.width = w + "px";
-		gCanvas.style.height = h + "px";
-		gCanvas.width = w;
-		gCanvas.height = h;
-		gCtx = gCanvas.getContext("2d");
-		gCtx.clearRect(0, 0, w, h);
-		imageData = gCtx.getImageData( 0,0,320,240);
-	}
+    // function initCanvas(ww,hh) {
+	// 	gCanvas = document.getElementById("qr-canvas");
+	// 	gCanvas.addEventListener("dragenter", dragenter, false);  
+	// 	gCanvas.addEventListener("dragover", dragover, false);  
+	// 	gCanvas.addEventListener("drop", drop, false);
+	// 	var w = ww;
+	// 	var h = hh;
+	// 	gCanvas.style.width = w + "px";
+	// 	gCanvas.style.height = h + "px";
+	// 	gCanvas.width = w;
+	// 	gCanvas.height = h;
+	// 	gCtx = gCanvas.getContext("2d");
+	// 	gCtx.clearRect(0, 0, w, h);
+	// 	imageData = gCtx.getImageData( 0,0,320,240);
+	// }
 
 	function passLine(stringPixels) { 
 		//a = (intVal >> 24) & 0xff;
@@ -211,11 +211,11 @@ fffffffffffffffffff
 		} 
  	} 
 
-    function captureToCanvas() {
-		flash = document.getElementById("embedflash");
-		flash.ccCapture();
-		qrcode.decode();
-    }
+    // function captureToCanvas() {
+	// 	flash = document.getElementById("embedflash");
+	// 	flash.ccCapture();
+	// 	qrcode.decode();
+    // }
 </script>
 
 
@@ -271,7 +271,6 @@ var vm_app = new Vue({
             var imgurl = this.camera_imgurl;
 
             if (imgurl == '') return false;
-
             // alert(imgurl);
 
             // initCanvas(640,480);
