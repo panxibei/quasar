@@ -60,7 +60,7 @@
     }, false);
 
     startbutton.addEventListener('click', function(ev){
-      vm_app.stopscan = setInterval(takepicture, 3000);
+      vm_app.stopscan = setInterval(takepicture, 1000);
       // alert();
       // takepicture();
       ev.preventDefault();
