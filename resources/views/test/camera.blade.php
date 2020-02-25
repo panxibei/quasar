@@ -38,10 +38,6 @@
 
     <br><br>
 
-    pgsql:<br>
-    @foreach($data1 as $value)
-        <img src="{{ $value }}" width="320px" height="240px">
-    @endforeach
 
     <br><br>
 
@@ -112,6 +108,7 @@ var vm_app = new Vue({
 				if (response.data) {
                     console.log('成功');
                     alert('成功');
+                    alert(imgurl);
 				} else {
                     console.log('失败');
                     alert('失败');

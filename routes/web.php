@@ -481,4 +481,7 @@ Route::group(['prefix'=>'test', 'namespace'=>'Test', 'middleware'=>[]], function
 
 	// quasar
 	Route::get('quasar', 'testController@quasar');
+
+	// jsqrcode
+	Route::get('jsqrcode', 'testController@jsqrcode');
 });

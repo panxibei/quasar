@@ -251,4 +251,12 @@ dd($email);
 	}
 
 
+	// jsqrcode
+	public function jsqrcode() {
+
+		return view('test.jsqrcode');
+		
+	}
+
+
 }
