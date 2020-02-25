@@ -33,7 +33,7 @@
     @{{ camera_imgurl.substr(0, 40) }}
     <br>
     <!-- <button @click="submitpic">Submit Pic</button> -->
-    <button @click="get_qrcode">Submit Pic</button>
+    <button @click="start_get_qrcode">Submit Pic</button>
 
 
     <br><br>
@@ -261,7 +261,10 @@ var vm_app = new Vue({
         },
 
         get_qrcode () {
+
             var imgurl = this.camera_imgurl;
+
+            if (imgurl == '') return false;
 
             initCanvas(640,480);
             qrcode.callback = read;
@@ -270,9 +273,14 @@ var vm_app = new Vue({
             
         },
 
+        start_get_qrcode() {
+            setInterval(this.get_qrcode(), 1000);
+        },
+
 
 	},
 	mounted: function () {
+        // setInterval(this.get_qrcode(), 1000);
         // this.get_qrcode();
 	}
 })
