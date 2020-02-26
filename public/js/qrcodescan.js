@@ -61,7 +61,7 @@
 
     startbutton.addEventListener('click', function(ev){
 
-      if (vm_app.modal_qrcodescan_show==true) {
+      // if (vm_app.modal_qrcodescan_show==true) {
         vm_app.stopscan = setInterval(
           function () {
               takepicture();
@@ -69,13 +69,16 @@
           }, 500);
       
 
+          // video.srcObject.stop();
+          // this.video.getTracks()[1].stop(); //关闭摄像头
         // alert();
         // takepicture();
         
-      } else {
-        // mediaStreamTrack.getTracks()[0].stop(); //关闭摄像头
-        video.stop();
-      }
+      // } else {
+      //   // mediaStreamTrack.getTracks()[0].stop(); //关闭摄像头
+      //   video.stop();
+      //   alert();
+      // }
 
       ev.preventDefault();
     }, false);

@@ -37,7 +37,7 @@
     @{{ qrcodeinfo }}
     <br>
     <!-- <button @click="submitpic">Submit Pic</button> -->
-    <button @click="alert('这个按钮没有功能')">Submit Pic</button>
+    <button @click="close_camera">Submit Pic</button>
 
 
     <br><br>
@@ -164,6 +164,7 @@ fffffffffffffffffff
         } else {
             
             if (vm_app.stopscan != null) {
+                close_camera();
                 clearInterval(vm_app.stopscan);
                 vm_app.stopscan = null;
             }
@@ -290,6 +291,22 @@ var vm_app = new Vue({
             
         },
 
+        close_camera() {
+
+            var video = document.getElementById('video');
+            const stream = video.srcObject;
+
+            if (stream) {
+                const tracks = stream.getTracks();
+            
+                tracks.forEach(function(track) {
+                    track.stop();
+                });
+            
+                video.srcObject = null;
+            }
+
+        },
 
 
     },
