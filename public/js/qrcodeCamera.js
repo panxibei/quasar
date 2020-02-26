@@ -61,12 +61,11 @@
 
     startbutton.addEventListener('click', function(ev){
 
-      // vm_app.stopscan = setInterval(
       vm_app.stopscan = setInterval(
         function () {
             takepicture();
-            vm_app.get_qrcode();
-            console.log('abcdefg');
+            vm_app.get_qrcode(); // 判断是否是正确的二维码
+            // console.log('abcdefg');
         }, 500);
 
       ev.preventDefault();

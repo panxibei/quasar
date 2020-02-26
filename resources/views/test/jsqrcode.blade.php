@@ -13,24 +13,24 @@
 </head>
 <body>
 
-<div id="app" class="contentarea">
+<div id="app">
 
     aaaaaaaaaaaaaaaaa test jsqrcode aaaaaaaaaaaaaaaaaa
     
-    <br>
+    <br><br>
     权限必须允许
     <br>
 
     <button id="startcapture" @click="vm_app.modal_qrcodescan_show=true">Start Up (permit camera)</button>
     <br><br>
 
-    imgUrl:<br>
+    <strong>imgUrl:</strong><br>
     @{{ camera_imgurl.substr(0, 40) }}
     <br><br>
 
-    qrcodeinfo:<br>
+    <strong>qrcodeinfo:</strong><br>
     @{{ qrcodeinfo }}
-    <br>
+    <br><br>
     <!-- <button @click="submitpic">Submit Pic</button> -->
     <button @click="close_camera">close camera</button>
 
@@ -39,30 +39,11 @@
     <my-qrcodescan></my-qrcodescan>
 
 <br><br>
-foot foot foot
+foot foot foot foot foot foot foot foot foot
 <br>
 
-<!-- <div class="container">
-	
-    <object  id="iembedflash" classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=7,0,0,0" width="320" height="240">
-        <param name="movie" value="camcanvas.swf" />
-        <param name="quality" value="high" />
-        <param name="allowScriptAccess" value="always" />
-        <embed allowScriptAccess="always" id="embedflash" src="camcanvas.swf" quality="high" width="320" height="240" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" mayscript="true"  />
-  </object>
-  
-  </div>
-<button onclick="captureToCanvas()">Capture</button><br>
-<canvas id="qr-canvas" width="640" height="480"></canvas> -->
-
-<br>
-fffffffffffffffffff
-<br><br>
 
 </div>
-
-
-
 
 </body>
 <script src="{{ asset('js/vue.min.js') }}"></script>
@@ -103,11 +84,11 @@ var vm_app = new Vue({
 	},
 	data: {
 
-        modal_qrcodescan_show: false,
-        stopscan: null,
-        camera_imgurl: '',
+        modal_qrcodescan_show: false, // camera窗口显示
+        stopscan: null, // 控制setInterval循环停止的变量
+        camera_imgurl: '', // 抓图URL
 
-        qrcodeinfo: '',
+        qrcodeinfo: '', // 二维码信息
 
     },
 	methods: {
@@ -143,12 +124,12 @@ var vm_app = new Vue({
 			})
         },
 
+        // 判断是否是正确的二维码
         get_qrcode () {
             
             var imgurl = this.camera_imgurl;
 
             if (imgurl == '') return false;
-            // alert(imgurl);
 
             // console.log(imgurl);
 
@@ -159,6 +140,7 @@ var vm_app = new Vue({
             
         },
 
+        // 关闭camera
         close_camera() {
 
             var video = document.getElementById('video');

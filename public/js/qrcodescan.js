@@ -105,7 +105,7 @@ function passLine(stringPixels) {
 
   if(c>=320*240*4) { 
     c=0;
-          gCtx.putImageData(imageData, 0,0);
+    gCtx.putImageData(imageData, 0,0);
   } 
  } 
 
