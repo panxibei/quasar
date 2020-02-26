@@ -61,24 +61,13 @@
 
     startbutton.addEventListener('click', function(ev){
 
-      // if (vm_app.modal_qrcodescan_show==true) {
-        vm_app.stopscan = setInterval(
-          function () {
-              takepicture();
-              vm_app.get_qrcode();
-          }, 500);
-      
-
-          // video.srcObject.stop();
-          // this.video.getTracks()[1].stop(); //关闭摄像头
-        // alert();
-        // takepicture();
-        
-      // } else {
-      //   // mediaStreamTrack.getTracks()[0].stop(); //关闭摄像头
-      //   video.stop();
-      //   alert();
-      // }
+      // vm_app.stopscan = setInterval(
+      vm_app.stopscan = setInterval(
+        function () {
+            takepicture();
+            vm_app.get_qrcode();
+            console.log('abcdefg');
+        }, 500);
 
       ev.preventDefault();
     }, false);

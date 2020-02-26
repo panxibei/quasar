@@ -8,20 +8,15 @@
 <meta name="author" content="">
 	<title>test jsqrcode</title>
     <link rel="stylesheet" href="{{ asset('statics/iview/styles/iview.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/camera.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/qrcodescan.css') }}">
     
 </head>
 <body>
 
 <div id="app" class="contentarea">
 
-<form method="post" action="#" id="printJS-form">
-    aaaaaaaaaaaaaaaaa
- </form>
-
-    <br>
-    <button @click="printJS('app', 'html')">Print</button>
-    <br>
+    aaaaaaaaaaaaaaaaa test jsqrcode aaaaaaaaaaaaaaaaaa
+    
     <br>
     权限必须允许
     <br>
@@ -37,26 +32,15 @@
     @{{ qrcodeinfo }}
     <br>
     <!-- <button @click="submitpic">Submit Pic</button> -->
-    <button @click="close_camera">Submit Pic</button>
-
-
-    <br><br>
-
+    <button @click="close_camera">close camera</button>
 
     <br><br>
 
-
-
-    <br><br>
-
-    <my-camera></my-camera>
-
-
+    <my-qrcodescan></my-qrcodescan>
 
 <br><br>
-<br><br>
-aaaaaaaaaaaaaaaaa
-<br><br>
+foot foot foot
+<br>
 
 <!-- <div class="container">
 	
@@ -71,7 +55,7 @@ aaaaaaaaaaaaaaaaa
 <button onclick="captureToCanvas()">Capture</button><br>
 <canvas id="qr-canvas" width="640" height="480"></canvas> -->
 
-<br><br>
+<br>
 fffffffffffffffffff
 <br><br>
 
@@ -115,7 +99,6 @@ fffffffffffffffffff
 	var jj=0;
 	var c=0;
 	
-	
     function dragenter(e) {
         e.stopPropagation();
         e.preventDefault();
@@ -154,23 +137,18 @@ fffffffffffffffffff
     // 参数为读取的二维码字符内容
     function read(a)
     {
-        // alert(a);
-        // console.log(a);
-        // return false;
         
         if (a == 'error decoding QR Code' || a == 'Failed to load the image') {
             return false;
-            // console.log('aaaaaaaaaaaaaa');
         } else {
             
             vm_app.close_camera();
 
             if (vm_app.stopscan != null) {
-                
                 clearInterval(vm_app.stopscan);
                 vm_app.stopscan = null;
             }
-            console.log('path: ' + a);
+            console.log('QRCode Info: ' + a); //a 为实际二维码读取出的信息
             vm_app.modal_qrcodescan_show = false;
             vm_app.qrcodeinfo = a;
         }
@@ -233,7 +211,7 @@ fffffffffffffffffff
 var vm_app = new Vue({
     el: '#app',
 	components: {
-		'my-camera': httpVueLoader("{{ asset('components/my-qrcodescan.vue') }}")
+		'my-qrcodescan': httpVueLoader("{{ asset('components/my-qrcodescan.vue') }}")
 	},
 	data: {
 

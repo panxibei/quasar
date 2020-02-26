@@ -204,7 +204,7 @@ qrcode.decode = function(src){
             }
             catch(e)
             {
-                console.log(e);
+                // console.log(e);
                 qrcode.result = "error decoding QR Code";
             }
             if(qrcode.callback!=null)
