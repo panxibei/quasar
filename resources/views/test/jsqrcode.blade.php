@@ -155,14 +155,16 @@ fffffffffffffffffff
     function read(a)
     {
         // alert(a);
+        // console.log(a);
+        // return false;
         
         if (a == 'error decoding QR Code' || a == 'Failed to load the image') {
             return false;
+            // console.log('aaaaaaaaaaaaaa');
         } else {
             
             if (vm_app.stopscan != null) {
                 clearInterval(vm_app.stopscan);
-            } else {
                 vm_app.stopscan = null;
             }
             console.log('path: ' + a);
@@ -278,6 +280,8 @@ var vm_app = new Vue({
 
             if (imgurl == '') return false;
             // alert(imgurl);
+
+            // console.log(imgurl);
 
             // initCanvas(640,480);
             qrcode.callback = read;

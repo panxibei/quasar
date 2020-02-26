@@ -64,14 +64,15 @@
       if (vm_app.modal_qrcodescan_show==true) {
         vm_app.stopscan = setInterval(
           function () {
-            
               takepicture();
               vm_app.get_qrcode();
           }, 500);
+      
+
+        // alert();
+        // takepicture();
+        // ev.preventDefault();
       }
-      // alert();
-      // takepicture();
-      ev.preventDefault();
     }, false);
     
     clearphoto();
