@@ -163,8 +163,8 @@ fffffffffffffffffff
             // console.log('aaaaaaaaaaaaaa');
         } else {
             
-            close_camera();
-            
+            // close_camera();
+
             if (vm_app.stopscan != null) {
                 
                 clearInterval(vm_app.stopscan);
