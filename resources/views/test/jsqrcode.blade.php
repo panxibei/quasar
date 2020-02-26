@@ -154,7 +154,7 @@ fffffffffffffffffff
     // 参数为读取的二维码字符内容
     function read(a)
     {
-        alert(a);
+        // alert(a);
         // console.log(a);
         // return false;
         
@@ -163,8 +163,10 @@ fffffffffffffffffff
             // console.log('aaaaaaaaaaaaaa');
         } else {
             
+            close_camera();
+            
             if (vm_app.stopscan != null) {
-                close_camera();
+                
                 clearInterval(vm_app.stopscan);
                 vm_app.stopscan = null;
             }
