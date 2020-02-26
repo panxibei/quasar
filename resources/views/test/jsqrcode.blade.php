@@ -154,7 +154,7 @@ fffffffffffffffffff
     // 参数为读取的二维码字符内容
     function read(a)
     {
-        // alert(a);
+        alert(a);
         // console.log(a);
         // return false;
         
