@@ -62,7 +62,7 @@
     startbutton.addEventListener('click', function(ev){
       vm_app.stopscan = setInterval(
         function () {
-          if (vm_app.stopscan==false) {
+          if (vm_app.modal_qrcodescan_show==true) {
             takepicture();
             vm_app.get_qrcode();
           } else {
