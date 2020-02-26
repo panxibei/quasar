@@ -71,8 +71,14 @@
 
         // alert();
         // takepicture();
-        // ev.preventDefault();
+        
+      } else {
+        streaming = null;
+        video = null;
+        canvas = null;
       }
+
+      ev.preventDefault();
     }, false);
     
     clearphoto();
