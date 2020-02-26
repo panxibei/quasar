@@ -159,7 +159,7 @@ fffffffffffffffffff
         if (a == 'error decoding QR Code' || a == 'Failed to load the image') {
             return false;
         } else {
-            video = null;
+            
             clearInterval(vm_app.stopscan);
             console.log('path: ' + a);
             vm_app.modal_qrcodescan_show = false;

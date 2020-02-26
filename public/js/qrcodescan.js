@@ -62,8 +62,13 @@
     startbutton.addEventListener('click', function(ev){
       vm_app.stopscan = setInterval(
         function () {
-          takepicture();
-          vm_app.get_qrcode();
+          if (vm_app.stopscan==false) {
+            takepicture();
+            vm_app.get_qrcode();
+          } else {
+            video = null;
+            return false;
+          }
         }, 500);
       // alert();
       // takepicture();
@@ -109,7 +114,6 @@
       clearphoto();
     }
   }
-
 
   // Set up our event listener to run the startup process
   // once loading is complete.
