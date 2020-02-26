@@ -73,9 +73,8 @@
         // takepicture();
         
       } else {
-        streaming = null;
-        video = null;
-        canvas = null;
+        // mediaStreamTrack.getTracks()[0].stop(); //关闭摄像头
+        video.stop();
       }
 
       ev.preventDefault();
