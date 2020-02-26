@@ -163,7 +163,7 @@ fffffffffffffffffff
             // console.log('aaaaaaaaaaaaaa');
         } else {
             
-            // close_camera();
+            vm_app.close_camera();
 
             if (vm_app.stopscan != null) {
                 
