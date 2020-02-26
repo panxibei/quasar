@@ -160,7 +160,11 @@ fffffffffffffffffff
             return false;
         } else {
             
-            clearInterval(vm_app.stopscan);
+            if (vm_app.stopscan != null) {
+                clearInterval(vm_app.stopscan);
+            } else {
+                vm_app.stopscan = null;
+            }
             console.log('path: ' + a);
             vm_app.modal_qrcodescan_show = false;
             vm_app.qrcodeinfo = a;

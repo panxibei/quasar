@@ -60,21 +60,15 @@
     }, false);
 
     startbutton.addEventListener('click', function(ev){
-      vm_app.stopscan = setInterval(
-        function () {
-          if (vm_app.modal_qrcodescan_show==true) {
-            takepicture();
-            vm_app.get_qrcode();
-          } else {
-            streaming = false;
-            startcapture = null;
-            video = null;
-            canvas = null;
-            photo = null;
-            startbutton = null;
-            return false;
-          }
-        }, 500);
+
+      if (vm_app.modal_qrcodescan_show==true) {
+        vm_app.stopscan = setInterval(
+          function () {
+            
+              takepicture();
+              vm_app.get_qrcode();
+          }, 500);
+      }
       // alert();
       // takepicture();
       ev.preventDefault();
