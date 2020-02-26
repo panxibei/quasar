@@ -66,11 +66,12 @@
             takepicture();
             vm_app.get_qrcode();
           } else {
-            // startcapture = null;
+            streaming = false;
+            startcapture = null;
             video = null;
             canvas = null;
             photo = null;
-            // startbutton = null;
+            startbutton = null;
             return false;
           }
         }, 500);
